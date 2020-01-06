@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass repository-class="App\Repository\MenuRepository" name="App\Entity\Menu" table="menu">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" length="128" nullable="true"/>
+
+        <field name="enabled" type="boolean" column="enabled"/>
+
+        <field name="left" column="lft" type="integer"/>
+
+        <many-to-one field="page" target-entity="App\Entity\Page" inversed-by="menus">
+            <join-column name="page_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
+
+        <one-to-many field="contents" target-entity="App\Entity\ContentMenu" mapped-by="menu" orphan-removal="true" >
+            <cascade>
+                <cascade-all/>
+            </cascade>
+            <order-by>
+                <order-by-field name="id" direction="ASC" />
+            </order-by>
+        </one-to-many>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

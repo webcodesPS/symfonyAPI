@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass repository-class="App\Repository\PageRepository" name="App\Entity\Page" table="page">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" column="name" length="128" nullable="true"/>
+
+        <field name="slug" column="slug" length="128" nullable="true"/>
+
+        <one-to-many field="contents" target-entity="App\Entity\ContentPage" mapped-by="page" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>

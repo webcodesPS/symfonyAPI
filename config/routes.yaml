@@ -1,0 +1,40 @@
+api_login_check:
+    path: /api/login_check
+    methods:  [OPTIONS,POST]
+
+menu:
+    path: /api/{_locale}/menu
+    controller: App\Http\Api\Controller\MenuController::index
+    requirements:
+        _locale: pl|en|fr|de
+    defaults: { _locale: pl}
+
+app:
+    path: /api/{_locale}/elements
+    controller: App\Http\Api\Controller\AppController::element
+    requirements:
+        _locale: pl|en|fr|de
+    defaults: { _locale: pl}
+
+user:
+    path: /api/user
+    controller: App\Http\Api\Controller\UserController::index
+
+index:
+    path: /api/{_locale}
+    controller: App\Http\Api\Controller\PageController::index
+    prefix:   /{_locale}
+    requirements:
+        _locale: pl|en|fr|de
+    defaults: { _locale: pl}
+
+page:
+    path:      /api/{_locale}/{page}
+    controller: App\Http\Api\Controller\PageController::page
+    requirements:
+        _locale: pl|en|fr|de
+    defaults: { _locale: pl}
+
+default_locale_page:
+    path:      /api/{page}
+    controller: App\Http\Api\Controller\PageController::page
