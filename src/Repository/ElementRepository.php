@@ -14,37 +14,31 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ElementRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Element::class);
-    }
+  public function __construct(ManagerRegistry $registry)
+  {
+    parent::__construct($registry, Element::class);
+  }
 
-    // /**
-    //  * @return Element[] Returns an array of Element objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+  /**
+   * @return Element[] Returns an array of Element objects
+   */
+  public function findElements()
+  {
+    return $this->createQueryBuilder('e')
+      ->getQuery()
+      ->getArrayResult()
+      ;
+  }
 
-    /*
-    public function findOneBySomeField($value): ?Element
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+  /*
+  public function findOneBySomeField($value): ?Element
+  {
+      return $this->createQueryBuilder('e')
+          ->andWhere('e.exampleField = :val')
+          ->setParameter('val', $value)
+          ->getQuery()
+          ->getOneOrNullResult()
+      ;
+  }
+  */
 }

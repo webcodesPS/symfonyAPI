@@ -24,10 +24,10 @@ class AppController extends AbstractController
     return $serializer->serialize($data, 'json');
   }
 
-  public function element(Request $request)
+  public function element()
   {
     $response = new Response();
-    $response->setContent($this->serializer($this->getDoctrine()->getRepository(Element::class)->findAll()));
+    $response->setContent($this->serializer($this->getDoctrine()->getRepository(Element::class)->findElements()));
     $response->headers->set('Content-Type', 'application/json');
 
     return $response;
