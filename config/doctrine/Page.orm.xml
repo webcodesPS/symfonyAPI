@@ -12,6 +12,8 @@
 
         <field name="name" column="name" length="128" nullable="true"/>
 
+        <field name="enabled" type="boolean" column="enabled"/>
+
         <field name="slug" column="slug" length="128" nullable="true"/>
 
         <one-to-many field="contents" target-entity="App\Entity\ContentPage" mapped-by="page" />

@@ -29,7 +29,7 @@ class MenuRepository extends ServiceEntityRepository
       ->select('m', 'p', 't')
       ->leftJoin('m.page', 'p')
       ->leftJoin('m.contents', 't')
-//      ->where('m.enabled = 1')
+      ->where('m.enabled = 1')
       ->andWhere('t.locale = :locale')
       ->setParameter('locale', $locale)
       ->orderBy('m.left', 'ASC')

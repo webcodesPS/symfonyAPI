@@ -6,21 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
- */
 class Page
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
     private $id;
 
     private $name;
 
     private $slug;
+
+    private $enabled;
 
     private $contents;
 
@@ -42,6 +36,11 @@ class Page
     public function getSlug(): ?string
     {
       return $this->slug;
+    }
+
+    public function getEnabled(): ?bool
+    {
+      return $this->enabled;
     }
 
     public function getContents(): Collection

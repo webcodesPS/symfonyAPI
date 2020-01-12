@@ -25,13 +25,15 @@ class PageRepository extends ServiceEntityRepository
      */
     public function findPage($locale, $page = '')
     {
-      $qb = $this->createQueryBuilder('p');
-      $qb->select('p', 't');
+      $qb = $this->createQueryBuilder('p')
+          ->select('p', 't')
+          ->where('p.enabled = 1');
+
       if ($page) {
-        $qb->where('p.slug = :slug')
+        $qb->andWhere('p.slug = :slug')
           ->setParameter('slug', $page);
       } else
-        $qb->where('p.id = 1');
+        $qb->andWhere('p.id = 1');
 
       $qb->leftJoin('p.contents', 't')
         ->andWhere('t.locale = :locale')
