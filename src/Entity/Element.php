@@ -3,32 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ElementRepository")
- */
 class Element
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
     private $id;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @var string
-     */
     private $name;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
+    private $contents;
+
     private $collections;
 
     public function __toString()
@@ -36,29 +20,29 @@ class Element
       return $this->name ?: '';
     }
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
       $this->collections = new ArrayCollection();
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getName()
     {
       return $this->name;
     }
 
     /**
-     * Get collections
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection|ContentElement[]
      */
+    public function getContents(): Collection
+    {
+      return $this->contents;
+    }
+
     public function getCollections()
     {
       return $this->collections;

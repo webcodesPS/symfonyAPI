@@ -7,7 +7,7 @@
     <mapped-superclass repository-class="App\Repository\MenuRepository" name="App\Entity\Menu" table="menu">
 
         <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
+            <generator/>
         </id>
 
         <field name="name" column="name" length="128" nullable="true"/>
@@ -17,7 +17,7 @@
         <field name="left" column="lft" type="integer"/>
 
         <many-to-one field="page" target-entity="App\Entity\Page" inversed-by="menus">
-            <join-column name="page_id" referenced-column-name="id" nullable="true" />
+            <join-column name="page_id" referenced-column-name="id"/>
         </many-to-one>
 
         <one-to-many field="contents" target-entity="App\Entity\ContentMenu" mapped-by="menu" orphan-removal="true" >

@@ -19,32 +19,23 @@ class CollectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Collection::class);
     }
 
-    // /**
-    //  * @return Collection[] Returns an array of Collection objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Collection
+  /**
+   * @param $locale
+   * @return Collection[]
+   */
+    public function findCollections($locale, $ids)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+      return $this->createQueryBuilder('c')
+        ->select('c', 'e', 'ec', 'm')
+        ->join('c.elements', 'e')
+        ->leftJoin('e.contents', 'ec')
+        ->leftJoin('c.media', 'm')
+        ->where('e.id IN(:element_ids)')
+        ->setParameter('element_ids', $ids)
+        ->andWhere('ec.locale = :locale')
+        ->setParameter('locale', $locale)
+        ->getQuery()
+        ->getArrayResult();
     }
-    */
 }

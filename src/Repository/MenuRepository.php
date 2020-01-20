@@ -19,21 +19,21 @@ class MenuRepository extends ServiceEntityRepository
         parent::__construct($registry, Menu::class);
     }
 
-  /**
-   * @param $locale
-   * @return Menu[]
-   */
-  public function findMenu($locale): array
-  {
-    return $this->createQueryBuilder('m')
-      ->select('m', 'p', 't')
-      ->leftJoin('m.page', 'p')
-      ->leftJoin('m.contents', 't')
-      ->where('m.enabled = 1')
-      ->andWhere('t.locale = :locale')
-      ->setParameter('locale', $locale)
-      ->orderBy('m.left', 'ASC')
-      ->getQuery()
-      ->getArrayResult();
-  }
+    /**
+     * @param $locale
+     * @return Menu[]
+     */
+    public function findMenu($locale): array
+    {
+      return $this->createQueryBuilder('m')
+        ->select('m', 'p', 't')
+        ->leftJoin('m.page', 'p')
+        ->leftJoin('m.contents', 't')
+        ->where('m.enabled = 1')
+        ->andWhere('t.locale = :locale')
+        ->setParameter('locale', $locale)
+        ->orderBy('m.left', 'ASC')
+        ->getQuery()
+        ->getArrayResult();
+    }
 }

@@ -9,9 +9,16 @@ menu:
         _locale: pl|en|fr|de
     defaults: { _locale: pl}
 
-app:
+app.elements:
     path: /api/{_locale}/elements
     controller: App\Http\Api\Controller\AppController::element
+    requirements:
+        _locale: pl|en|fr|de
+    defaults: { _locale: pl}
+
+app.collection:
+    path: /api/{_locale}/collection
+    controller: App\Http\Api\Controller\AppController::collection
     requirements:
         _locale: pl|en|fr|de
     defaults: { _locale: pl}

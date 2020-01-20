@@ -22,23 +22,14 @@ class ElementRepository extends ServiceEntityRepository
   /**
    * @return Element[] Returns an array of Element objects
    */
-  public function findElements()
+  public function findElements($locale)
   {
     return $this->createQueryBuilder('e')
+      ->select('e', 'ec')
+      ->leftJoin('e.contents', 'ec')
+      ->andWhere('ec.locale = :locale')
+      ->setParameter('locale', $locale)
       ->getQuery()
-      ->getArrayResult()
-      ;
+      ->getArrayResult();
   }
-
-  /*
-  public function findOneBySomeField($value): ?Element
-  {
-      return $this->createQueryBuilder('e')
-          ->andWhere('e.exampleField = :val')
-          ->setParameter('val', $value)
-          ->getQuery()
-          ->getOneOrNullResult()
-      ;
-  }
-  */
 }
