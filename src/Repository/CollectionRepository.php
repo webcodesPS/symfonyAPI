@@ -19,21 +19,21 @@ class CollectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Collection::class);
     }
 
-
   /**
    * @param $locale
+   * @param $ids
    * @return Collection[]
    */
     public function findCollections($locale, $ids)
     {
       return $this->createQueryBuilder('c')
-        ->select('c', 'e', 'ec', 'm')
+        ->select('c', 'e', 'cc', 'm')
         ->join('c.elements', 'e')
-        ->leftJoin('e.contents', 'ec')
+        ->leftJoin('c.contents', 'cc')
         ->leftJoin('c.media', 'm')
         ->where('e.id IN(:element_ids)')
         ->setParameter('element_ids', $ids)
-        ->andWhere('ec.locale = :locale')
+        ->andWhere('cc.locale = :locale')
         ->setParameter('locale', $locale)
         ->getQuery()
         ->getArrayResult();

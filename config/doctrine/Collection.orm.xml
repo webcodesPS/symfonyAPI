@@ -28,7 +28,7 @@
       <join-column name="media_id" referenced-column-name="id" />
     </many-to-one>
 
-    <field name="description" type="text" column="description" nullable="true"/>
+    <one-to-many field="contents" target-entity="App\Entity\ContentCollection" mapped-by="collection" />
 
   </entity>
 </doctrine-mapping>

@@ -8,16 +8,15 @@ class Collection
 {
     private $id;
 
-    public function getId(): ?int
-    {
-      return $this->id;
-    }
-
     private $name;
 
     private $elements;
 
     private $media;
+
+    private $category;
+
+    private $contents;
 
     public function __toString()
     {
@@ -27,13 +26,12 @@ class Collection
     public function __construct()
     {
       $this->elements = new ArrayCollection();
+      $this->contents = new ArrayCollection();
     }
 
-    public function setName($name)
+    public function getId(): ?int
     {
-      $this->name = $name;
-
-      return $this;
+      return $this->id;
     }
 
     public function getName()
@@ -41,30 +39,9 @@ class Collection
       return $this->name;
     }
 
-    public function addElement(Element $elements)
-    {
-      $this->elements[] = $elements;
-
-      return $this;
-    }
-
-    public function removeElement(Element $elements)
-    {
-      $this->elements->removeElement($elements);
-    }
-
     public function getElements()
     {
       return $this->elements;
-    }
-
-    private $category;
-
-    public function setCategory(Category $category = null)
-    {
-      $this->category = $category;
-
-      return $this;
     }
 
     public function getCategory()
@@ -77,22 +54,8 @@ class Collection
       return $this->media;
     }
 
-    public function setMedia($media)
+    public function getContents(): ContentCollection
     {
-      $this->media = $media;
-    }
-
-    private $description;
-
-    public function setDescription($description)
-    {
-      $this->description = $description;
-
-      return $this;
-    }
-
-    public function getDescription()
-    {
-      return $this->description;
+      return $this->contents;
     }
 }
