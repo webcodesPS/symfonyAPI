@@ -16,8 +16,8 @@ app.elements:
         _locale: pl|en|fr|de
     defaults: { _locale: pl}
 
-app.collection:
-    path: /api/{_locale}/collection
+app.collections:
+    path: /api/{_locale}/collections
     controller: App\Http\Api\Controller\AppController::collection
     requirements:
         _locale: pl|en|fr|de
