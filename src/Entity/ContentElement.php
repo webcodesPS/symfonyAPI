@@ -10,8 +10,6 @@ class ContentElement
 
   private $content;
 
-  private $title;
-
   private $element;
 
   public function __toString()
@@ -32,11 +30,6 @@ class ContentElement
   public function getContent(): ?string
   {
     return $this->content;
-  }
-
-  public function getTitle(): ?string
-  {
-    return $this->title;
   }
 
   public function getElement(): ?Element
