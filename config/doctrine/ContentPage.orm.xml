@@ -17,8 +17,6 @@
 
         <field name="position" type="integer" column="position" nullable="true"/>
 
-        <field name="name" type="string" column="name" length="64" nullable="true"/>
-
         <field name="content" type="text" column="content" nullable="true"/>
 
     </entity>

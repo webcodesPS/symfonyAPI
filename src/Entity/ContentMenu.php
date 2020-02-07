@@ -6,8 +6,6 @@ class ContentMenu
 {
     private $id;
 
-    private $title;
-
     private $locale;
 
     private $content;
@@ -22,11 +20,6 @@ class ContentMenu
     public function getId(): ?int
     {
       return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-      return $this->title;
     }
 
     public function getLocale(): ?string

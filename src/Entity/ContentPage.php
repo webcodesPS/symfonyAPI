@@ -20,8 +20,6 @@ class ContentPage
 
     private $position;
 
-    private $name;
-
     private $content;
 
     private $page;
@@ -33,7 +31,7 @@ class ContentPage
 
     public function __toString()
     {
-      return $this->name ?: '';
+      return $this->page ?: '';
     }
 
     public function getLocale(): ?string
@@ -44,11 +42,6 @@ class ContentPage
     public function getPosition(): ?int
     {
       return $this->position;
-    }
-
-    public function getName(): ?string
-    {
-      return $this->name;
     }
 
     public function getContent(): ?string
